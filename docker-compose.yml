@@ -1,0 +1,18 @@
+services:
+
+  postgres:                              # service name (you choose this)
+    image: postgres:15                   # pulls this from Docker Hub
+    container_name: ecommerce_db         # name visible in Docker Desktop
+    restart: always                      # auto-restart if it crashes
+    environment:
+      POSTGRES_DB: ecommercedb           # database name
+      POSTGRES_USER: admin               # username
+      POSTGRES_PASSWORD: admin       # password
+      PGTZ: Asia/Kolkata
+    ports:
+      - "5432:5432"                      # host:container
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # persist data
+
+volumes:
+  pgdata:                                # Docker manages this volume
